@@ -11,6 +11,7 @@ from tensorflow.keras import Sequential
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, CSVLogger
 import models
 
+## Parameters ##
 parent_dir = '/home/varelal/Documents/COCO_blurred_V1/'
 
 train_dir = parent_dir + 'Train/'
@@ -34,7 +35,7 @@ EPOCHS = 200
 #Filtering
 max_patch = 33
 
-
+## Functions 
 def cot(x):
     return 1/np.tan(x)
 
@@ -169,37 +170,10 @@ class DataGenerator(keras.utils.Sequence):
         y = np.asarray(y)
         #print(X.shape, y.shape)
         return X, y
-"""    
-model = Sequential()
 
-model.add(Conv2D(input_shape=(None, None, CHANNELS), filters=64, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(Conv2D(filters=64, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(MaxPool2D(pool_size=(2,2), strides=(2,2)))
 
-model.add(Conv2D(filters=128, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(Conv2D(filters=128, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(MaxPool2D(pool_size=(2,2), strides=(2,2)))
+## Define model and training
 
-model.add(Conv2D(filters=256, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(Conv2D(filters=256, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(Conv2D(filters=256, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(MaxPool2D(pool_size=(2,2), strides=(2,2)))
-
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(Conv2D(filters=512, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(MaxPool2D(pool_size=(2,2), strides=(2,2)))
-
-model.add(Conv2D(filters=1024, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(Conv2D(filters=1024, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(Conv2D(filters=1024, kernel_size=(3,3), padding='same', activation='relu'))
-model.add(MaxPool2D(pool_size=(2,2), strides=(2,2)))
-
-model.add(GlobalAveragePooling2D())
-model.add(Dense(units=2048, activation='relu'))
-model.add(Dense(units=2048, activation='relu'))
-model.add(Dense(units=2, activation='sigmoid')) 
-"""
 model = models.vgg_14()
 model.summary()
 # params = {len_y: int(2),
